@@ -10,7 +10,7 @@ namespace FileShareLib
 {
     public class FileTransferService : IFileTransferService
     {
-        public string UploadFolder { get; set; }
+        public string UploadFolder { get; set; } = Directory.GetCurrentDirectory();
 
         public RemoteFileInfo DownloadFile(DownloadRequest request)
         {
