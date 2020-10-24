@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShareConsoleClient", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShareHost", "FileShareHost\FileShareHost.csproj", "{A7FD1225-4190-425A-BA82-9B97E874AD4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileShareLibrary", "FileShareLibrary\FileShareLibrary.csproj", "{E5A6FB58-FEC5-42C1-BE82-2FD43E0288A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A7FD1225-4190-425A-BA82-9B97E874AD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7FD1225-4190-425A-BA82-9B97E874AD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7FD1225-4190-425A-BA82-9B97E874AD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A6FB58-FEC5-42C1-BE82-2FD43E0288A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A6FB58-FEC5-42C1-BE82-2FD43E0288A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A6FB58-FEC5-42C1-BE82-2FD43E0288A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A6FB58-FEC5-42C1-BE82-2FD43E0288A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
