@@ -5,7 +5,7 @@ namespace FileShareLibrary
 {
     public class FileTransferService : IFileTransferService
     {
-        public string UploadFolder { get; set; }
+        public string UploadFolder { get; set; } = @"C:\DirectoryWCFFile\FileTransfer";
 
         public RemoteFileInfo DownloadFile(DownloadRequest request)
         {

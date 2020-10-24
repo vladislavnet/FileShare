@@ -16,6 +16,7 @@ namespace FileShareHost
             using (ServiceHost serviceHost =
             new ServiceHost(typeof(FileTransferService)))
             {
+                
                 serviceHost.Open();
                 DisplayHostlnfо(serviceHost);
                 Console.WriteLine("The service is ready.");
