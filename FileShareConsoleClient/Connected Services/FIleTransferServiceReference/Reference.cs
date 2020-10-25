@@ -15,6 +15,12 @@ namespace FileShareConsoleClient.FIleTransferServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FIleTransferServiceReference.IFileTransferService")]
     public interface IFileTransferService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileTransferService/ListFiles", ReplyAction="http://tempuri.org/IFileTransferService/ListFilesResponse")]
+        string[] ListFiles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileTransferService/ListFiles", ReplyAction="http://tempuri.org/IFileTransferService/ListFilesResponse")]
+        System.Threading.Tasks.Task<string[]> ListFilesAsync();
+        
         // CODEGEN: Контракт генерации сообщений с операцией UploadFile не является ни RPC, ни упакованным документом.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileTransferService/UploadFile", ReplyAction="http://tempuri.org/IFileTransferService/UploadFileResponse")]
         FileShareConsoleClient.FIleTransferServiceReference.UploadFileResponse UploadFile(FileShareConsoleClient.FIleTransferServiceReference.RemoteFileInfo request);
@@ -107,6 +113,14 @@ namespace FileShareConsoleClient.FIleTransferServiceReference {
         
         public FileTransferServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string[] ListFiles() {
+            return base.Channel.ListFiles();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListFilesAsync() {
+            return base.Channel.ListFilesAsync();
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

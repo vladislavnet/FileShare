@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bc4b5a75-3703-4e93-b2ed-a504780a5dad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d51fbce2-ed5b-424b-8c67-1ae57a4bec60" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:8080/FileTransferService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FileTransferService.xsd" MetadataType="Schema" ID="3e15c182-1f50-49b6-abf9-f889d8bfa070" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd1" />
-    <MetadataFile FileName="FileTransferService.wsdl" MetadataType="Wsdl" ID="507d1e9b-5a31-460d-9e7e-0b1b3e3deefb" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?wsdl" />
-    <MetadataFile FileName="FileTransferService1.xsd" MetadataType="Schema" ID="4ece1aa1-e4a2-4b39-9992-bf4c87293905" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd0" />
-    <MetadataFile FileName="FileTransferService.disco" MetadataType="Disco" ID="35104fcd-ecab-4bad-90e3-20d34cb4dd52" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?disco" />
-    <MetadataFile FileName="FileTransferService2.xsd" MetadataType="Schema" ID="8dbfc231-24d0-4cea-b58f-b4331c1c80ef" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd2" />
+    <MetadataFile FileName="FileTransferService.wsdl" MetadataType="Wsdl" ID="14e5b6a5-476a-4b34-a2a3-f584e43ab853" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?wsdl" />
+    <MetadataFile FileName="FileTransferService.disco" MetadataType="Disco" ID="40e50294-6308-4c32-a4d8-bcedac920e1c" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?disco" />
+    <MetadataFile FileName="FileTransferService.xsd" MetadataType="Schema" ID="f73727d4-6a0a-4ad7-8ddb-c134b7241444" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd3" />
+    <MetadataFile FileName="FileTransferService1.xsd" MetadataType="Schema" ID="284f6301-13bf-4002-8eb3-6ec8533512af" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd2" />
+    <MetadataFile FileName="FileTransferService2.xsd" MetadataType="Schema" ID="9955ef25-608e-4fa7-902d-d9cfa416f7f5" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd1" />
+    <MetadataFile FileName="FileTransferService3.xsd" MetadataType="Schema" ID="201fd920-6b04-4a74-a7de-b5ada2744ded" SourceId="1" SourceUrl="http://localhost:8080/FileTransferService?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

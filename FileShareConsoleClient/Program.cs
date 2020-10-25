@@ -17,6 +17,7 @@ namespace FileShareConsoleClient
                 Console.WriteLine("Выберите команду");
                 Console.WriteLine("1. Загрузить файл");
                 Console.WriteLine("2. Выгрузить файл");
+                Console.WriteLine("3. Список файлов на сервере");
                 string command = Console.ReadLine();
                 switch (command)
                 {
@@ -25,6 +26,9 @@ namespace FileShareConsoleClient
                         break;
                     case "2":
                         uploadFile();
+                        break;
+                    case "3":
+                        showListFilesServer();
                         break;
                 }
             }
@@ -35,17 +39,22 @@ namespace FileShareConsoleClient
             try
             {
                 Console.WriteLine("Выберите файл");
-                string fileName = "Test.txt";
+
                 string pathDirectory = getFileDirectory();
                 if (!checkDerectory(pathDirectory))
                     createDirectory(pathDirectory);
 
-
                 using (var client = new FileTransferServiceClient())
                 {
+                    var files = client.ListFiles();
+                    showFiles(files);
+                    int index = int.Parse(Console.ReadLine());
+                    string fileName = getFile(index, files);
+
                     using (FileStream fstream = new FileStream(Path.Combine(pathDirectory, fileName),
                         FileMode.OpenOrCreate))
                     {
+
                         client.DownloadFile(ref fileName, out Stream stream);
                         int byteLenght = 2048;
                         int readByte = 0;
@@ -97,6 +106,14 @@ namespace FileShareConsoleClient
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        static void showListFilesServer()
+        {
+            using(var client = new FileTransferServiceClient())
+            {
+                showFiles(client.ListFiles());
             }
         }
 
