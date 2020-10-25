@@ -23,30 +23,122 @@ namespace FileShareConsoleClient
                     case "1":
                         downloadFile();
                         break;
+                    case "2":
+                        uploadFile();
+                        break;
                 }
             }
         }
 
         static void downloadFile()
         {
-            Console.WriteLine("Выберите файл");
-            string fileName = "Test.txt";
-            using (var client = new FileTransferServiceClient())
+            try
             {
-                client.DownloadFile(ref fileName, out Stream stream);
-                int byteLenght = 4;
-                byte[] array = new byte[byteLenght];
-                int readByte = 0;
-                while (true)
+                Console.WriteLine("Выберите файл");
+                string fileName = "Test.txt";
+                string pathDirectory = getFileDirectory();
+                if (!checkDerectory(pathDirectory))
+                    createDirectory(pathDirectory);
+
+
+                using (var client = new FileTransferServiceClient())
                 {
-                    readByte = stream.Read(array, 0, byteLenght);
-                    Console.WriteLine(readByte);
-                    if (readByte < 1)
-                        break;
-                    Console.WriteLine(Encoding.Default.GetString(array));
+                    using (FileStream fstream = new FileStream(Path.Combine(pathDirectory, fileName),
+                        FileMode.OpenOrCreate))
+                    {
+                        client.DownloadFile(ref fileName, out Stream stream);
+                        int byteLenght = 2048;
+                        int readByte = 0;
+                        byte[] array = new byte[byteLenght];
+                        while (true)
+                        {
+                            readByte = stream.Read(array, 0, byteLenght);
+                            if (readByte < 1)
+                                break;
+                            fstream.Write(array, 0, readByte);
+                        }
+                    }
                 }
-                //Console.WriteLine(Encoding.Default.GetString(array));
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
+
+        static void uploadFile()
+        {
+            try
+            {
+                Console.WriteLine("Выберите файл");
+                string pathDirectory = getUploadFileDirectory();
+                if (!checkDerectory(pathDirectory))
+                    createDirectory(pathDirectory);
+                string[] files = getUploadFilesName(pathDirectory);
+                showUploadFiles(files);
+                int index = int.Parse(Console.ReadLine());
+                string pathFile = getFile(index, files);
+                using (FileStream fstream = File.OpenRead(pathFile))
+                {
+                    using (var client = new FileTransferServiceClient())
+                    {
+                        client.UploadFile(getFileName(pathFile), fstream.Length, fstream);
+                    }
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        static string getFileDirectory() => Path.Combine(Directory.GetCurrentDirectory(), "Files");
+
+        static string getUploadFileDirectory() => Path.Combine(Directory.GetCurrentDirectory(), "UploadFiles");
+
+        static string[] getUploadFilesName(string pathDirectory) => Directory.GetFiles(pathDirectory);
+        
+        static bool checkDerectory(string pathDirectory) => Directory.Exists(pathDirectory);
+
+        static void createDirectory(string pathDirectory) => Directory.CreateDirectory(pathDirectory);
+
+        static void showFiles(string[] files)
+        {
+            int i = 1;
+            foreach (string file in files)
+            {
+                Console.WriteLine($"{i++}. {file}");
+            }
+        }
+
+        static void showUploadFiles(string[] files)
+        {
+            int i = 1;
+            foreach (string file in files)
+            {
+                FileInfo fileInfo = new FileInfo(file);
+                Console.WriteLine($"{i++}. {fileInfo.Name}");
+            }
+        }
+
+        static string getFile(int index, string[] files)
+        {
+            if (files.Length == 0)
+                return string.Empty;
+            if (index < 1 && index > files.Length)
+                throw new ArgumentOutOfRangeException("index", "Вы выбрали неккоректное значение из списка файлов");
+            return files[index - 1];
+        }
+
+        static string getFileName(string pathFile) => new FileInfo(pathFile).Name;
     }
 }
