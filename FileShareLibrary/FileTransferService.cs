@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace FileShareLibrary
@@ -34,6 +35,15 @@ namespace FileShareLibrary
                 Console.WriteLine(ex.Message);
             }
             return result;
+        }
+
+        public string[] ListFiles()
+        {
+            string[] files = Directory.GetFiles(UploadFolder);
+            List<string> filesName = new List<string>();
+            foreach (var pathFile in files)
+                filesName.Add(new FileInfo(pathFile).Name);
+            return filesName.ToArray();
         }
 
         public void UploadFile(RemoteFileInfo request)

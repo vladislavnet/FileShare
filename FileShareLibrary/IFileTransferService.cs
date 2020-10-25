@@ -8,6 +8,9 @@ namespace FileShareLibrary
         string UploadFolder { get; set; }
 
         [OperationContract]
+        string[] ListFiles();
+
+        [OperationContract]
         void UploadFile(RemoteFileInfo request);
 
         [OperationContract]
